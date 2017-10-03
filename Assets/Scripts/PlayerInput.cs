@@ -10,9 +10,11 @@ public class PlayerInput : MonoBehaviour {
     public float Vertical;
     public UnityEvent Jump;
     public UnityEvent Use;
+    public UnityEvent Crouch;
 
     private bool jumping;
     private bool use;
+    private bool crouch;
 
     private void Awake()
     {
@@ -43,6 +45,15 @@ public class PlayerInput : MonoBehaviour {
         else
         {
             jumping = false;
+        }
+        if (!crouch && Input.GetAxis("Vertical") < -0.5)
+        {
+            crouch = true;
+            Crouch.Invoke();
+        }
+        else
+        {
+            crouch = false;
         }
         if (!use && Input.GetAxis("Use") > 0.5)
         {
