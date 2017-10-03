@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class PlayerInput : MonoBehaviour {
 
-    static PlayerInput Instance;
+    public static PlayerInput Instance;
     public float Horizontal;
     public float Vertical;
     public UnityEvent Jump;
