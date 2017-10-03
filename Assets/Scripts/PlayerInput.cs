@@ -37,7 +37,7 @@ public class PlayerInput : MonoBehaviour {
 	void Update () {
         Horizontal = Input.GetAxis("Horizontal");
         Vertical = Input.GetAxis("Vertical");
-        if (!jumping && Input.GetAxis("Vertical") > 0.5)
+        if (!jumping && Input.GetAxis("Vertical") > 0.05)
         {
             jumping = true;
             Jump.Invoke();
@@ -46,7 +46,7 @@ public class PlayerInput : MonoBehaviour {
         {
             jumping = false;
         }
-        if (!crouch && Input.GetAxis("Vertical") < -0.5)
+        if (!crouch && Input.GetAxis("Vertical") < -0.05)
         {
             crouch = true;
             Crouch.Invoke();
@@ -55,7 +55,7 @@ public class PlayerInput : MonoBehaviour {
         {
             crouch = false;
         }
-        if (!use && Input.GetAxis("Use") > 0.5)
+        if (!use && Input.GetAxis("Use") > 0.05)
         {
             use = true;
             Use.Invoke();
