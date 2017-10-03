@@ -11,6 +11,9 @@ public class PlayerInput : MonoBehaviour {
     public UnityEvent Jump;
     public UnityEvent Use;
 
+    private bool jumping;
+    private bool use;
+
     private void Awake()
     {
         if (Instance)
@@ -30,6 +33,25 @@ public class PlayerInput : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+        Horizontal = Input.GetAxis("Horiontal");
+        Vertical = Input.GetAxis("Vertical");
+        if (!jumping && Input.GetAxis("Vertical") > 0.5)
+        {
+            jumping = true;
+            Jump.Invoke();
+        }
+        else
+        {
+            jumping = false;
+        }
+        if (!use && Input.GetAxis("Use") > 0.5)
+        {
+            use = true;
+            Use.Invoke();
+        }
+        else
+        {
+            use = false;
+        }
+    }
 }
