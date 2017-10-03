@@ -8,6 +8,10 @@ public class PlayerInput : MonoBehaviour {
     public static PlayerInput Instance;
     public float Horizontal;
     public float Vertical;
+    public string HorizontalAxisName = "Horizontal";
+    public string VerticalAxisName = "Vertical";
+    public string UseAxisName = "Use";
+    public double deadZone = 0.05;
 
     public UnityEvent Up;
     public UnityEvent Down;
@@ -41,27 +45,27 @@ public class PlayerInput : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Horizontal = Input.GetAxis("Horizontal");
-        Vertical = Input.GetAxis("Vertical");
+        Horizontal = Input.GetAxis(HorizontalAxisName);
+        Vertical = Input.GetAxis(VerticalAxisName);
 
-        if (Input.GetAxis("Vertical") > 0.05)
+        if (Input.GetAxis(VerticalAxisName) > deadZone)
         {
             Up.Invoke();
         }
-        if (Input.GetAxis("Vertical") < -0.05)
+        if (Input.GetAxis(VerticalAxisName) < -deadZone)
         {
             Down.Invoke();
         }
-        if (Input.GetAxis("Horizontal") > 0.05)
+        if (Input.GetAxis(HorizontalAxisName) > deadZone)
         {
             Right.Invoke();
         }
-        if (Input.GetAxis("Horizontal") < -0.05)
+        if (Input.GetAxis(HorizontalAxisName) < -deadZone)
         {
             Left.Invoke();
         }
 
-        if (!jumping && Input.GetAxis("Vertical") > 0.05)
+        if (!jumping && Input.GetAxis(VerticalAxisName) > deadZone)
         {
             jumping = true;
             Jump.Invoke();
@@ -70,7 +74,7 @@ public class PlayerInput : MonoBehaviour {
         {
             jumping = false;
         }
-        if (!crouch && Input.GetAxis("Vertical") < -0.05)
+        if (!crouch && Input.GetAxis(VerticalAxisName) < -deadZone)
         {
             crouch = true;
             Crouch.Invoke();
@@ -79,7 +83,7 @@ public class PlayerInput : MonoBehaviour {
         {
             crouch = false;
         }
-        if (!use && Input.GetAxis("Use") > 0.05)
+        if (!use && Input.GetAxis(UseAxisName) > deadZone)
         {
             use = true;
             Use.Invoke();
