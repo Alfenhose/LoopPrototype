@@ -8,6 +8,12 @@ public class PlayerInput : MonoBehaviour {
     public static PlayerInput Instance;
     public float Horizontal;
     public float Vertical;
+
+    public UnityEvent Up;
+    public UnityEvent Down;
+    public UnityEvent Right;
+    public UnityEvent Left;
+
     public UnityEvent Jump;
     public UnityEvent Use;
     public UnityEvent Crouch;
@@ -37,6 +43,24 @@ public class PlayerInput : MonoBehaviour {
 	void Update () {
         Horizontal = Input.GetAxis("Horizontal");
         Vertical = Input.GetAxis("Vertical");
+
+        if (Input.GetAxis("Vertical") > 0.05)
+        {
+            Up.Invoke();
+        }
+        if (Input.GetAxis("Vertical") < -0.05)
+        {
+            Down.Invoke();
+        }
+        if (Input.GetAxis("Horizontal") > 0.05)
+        {
+            Right.Invoke();
+        }
+        if (Input.GetAxis("Horizontal") < -0.05)
+        {
+            Left.Invoke();
+        }
+
         if (!jumping && Input.GetAxis("Vertical") > 0.05)
         {
             jumping = true;
