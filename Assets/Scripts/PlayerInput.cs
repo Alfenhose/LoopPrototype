@@ -35,7 +35,7 @@ public class PlayerInput : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Horizontal = Input.GetAxis("Horiontal");
+        Horizontal = Input.GetAxis("Horizontal");
         Vertical = Input.GetAxis("Vertical");
         if (!jumping && Input.GetAxis("Vertical") > 0.5)
         {
