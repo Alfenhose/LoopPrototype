@@ -37,7 +37,7 @@ GameObject:
   - component: {fileID: 4302983076349868}
   - component: {fileID: 114884831272757854}
   m_Layer: 0
-  m_Name: ball
+  m_Name: star
   m_TagString: Stealable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -81,9 +81,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2826b4dd437f6540baf2f33fdf27ed1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  height: 0.8
-  worth: 100
+  height: 0
+  worth: 1000
+  objectName: a star
   sprite: {fileID: 1803708088183238}
+  spriterenderer: {fileID: 0}
 --- !u!212 &212005936436639484
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -116,7 +118,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d6968d4df11cc6546bfb68387a8d11ab, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9abd2b8aa4cc7e041b84dfce97df1447, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

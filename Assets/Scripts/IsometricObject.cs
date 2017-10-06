@@ -9,7 +9,7 @@ public class IsometricObject : MonoBehaviour {
     public string objectName;
     public GameObject sprite;
     private Transform spritePos;
-    private SpriteRenderer spriterenderer;
+    public SpriteRenderer spriterenderer;
  
 	// Use this for initialization
 	public virtual void Start () {

@@ -9,7 +9,7 @@ public class PlayerIsometric : MonoBehaviour {
     public float horizontalSpeed = 5;
     public float verticalSpeed = 5;
     private float pickupCooldown = 0;
-    private float pickupCooldownMax = 1;
+    private float pickupCooldownMax = 3;
     private bool stealing = false;
     public GameObject selectionPrefab;
     private GameObject selectionObject;
@@ -28,17 +28,20 @@ public class PlayerIsometric : MonoBehaviour {
 
         if (!stealing)
         {
+            UILevel1.Instance.ShowStolePanel(false);
             Move();
             closestObject = GetClosestObject("Stealable", 2f);
             UpdateSelection();
         }
+        else
+        {
+            selectionObject.SetActive(false);
+            rigidbody2d.velocity = new Vector2();
+            UILevel1.Instance.ShowStolePanel(true);
+        }
 
 
         SetDepth();
-
-
-        
-
     }
     private void SetDepth()
     {

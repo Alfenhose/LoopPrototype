@@ -7,6 +7,7 @@ public class ScoreManager : MonoBehaviour {
     public static ScoreManager Instance;
 
     public float score;
+    public float timeLeft = 60;
     private void Awake()
     {
         if (Instance)
@@ -27,6 +28,8 @@ public class ScoreManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        timeLeft -= Time.deltaTime;
+        if (UILevel1.Instance)
+            UILevel1.Instance.time.text = "Time Left: "+(int)timeLeft;
 	}
 }
