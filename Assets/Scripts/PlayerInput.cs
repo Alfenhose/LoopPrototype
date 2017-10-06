@@ -65,28 +65,37 @@ public class PlayerInput : MonoBehaviour {
             Left.Invoke();
         }
 
-        if (!jumping && Input.GetAxis(VerticalAxisName) > deadZone)
+        if (Input.GetAxis(VerticalAxisName) > deadZone)
         {
-            jumping = true;
-            Jump.Invoke();
+            if (!jumping)
+            {
+                jumping = true;
+                Jump.Invoke();
+            }
         }
         else
         {
             jumping = false;
         }
-        if (!crouch && Input.GetAxis(VerticalAxisName) < -deadZone)
+        if (Input.GetAxis(VerticalAxisName) < -deadZone)
         {
-            crouch = true;
-            Crouch.Invoke();
+            if (!crouch)
+            {
+                crouch = true;
+                Crouch.Invoke();
+            }
         }
         else
         {
             crouch = false;
         }
-        if (!use && Input.GetAxis(UseAxisName) > deadZone)
+        if (Input.GetAxis(UseAxisName) > deadZone)
         {
-            use = true;
-            Use.Invoke();
+            if (!use)
+            {
+                use = true;
+                Use.Invoke();
+            }
         }
         else
         {
