@@ -19,7 +19,7 @@ public class PlayerController2D : MonoBehaviour
     {
         rBody = gameObject.GetComponent<Rigidbody2D>();
         pI = PlayerInput.Instance;
-        PlayerInput.Instance.Jump.AddListener(Jump);
+        pI.Jump.AddListener(Jump);
     }
 
     // Update is called once per frame
