@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Stealable
   - Ground
+  - KnockOverAble
   layers:
   - Default
   - TransparentFX
