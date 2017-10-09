@@ -37,7 +37,7 @@ GameObject:
   - component: {fileID: 4302983076349868}
   - component: {fileID: 114884831272757854}
   m_Layer: 0
-  m_Name: star
+  m_Name: bills
   m_TagString: Stealable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -82,8 +82,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   height: 0
-  worth: 1000
-  objectName: a star
+  worth: 950
+  objectName: Pile of pills
   sprite: {fileID: 1803708088183238}
   spriterenderer: {fileID: 0}
 --- !u!212 &212005936436639484
@@ -118,12 +118,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9abd2b8aa4cc7e041b84dfce97df1447, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 598d3fffbee311246a255a0a6cd0dd2c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.41, y: 1.4}
+  m_Size: {x: 4.01, y: 3.31}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

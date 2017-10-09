@@ -6,8 +6,8 @@ using UnityEngine;
 public class PlayerIsometric : MonoBehaviour {
 
     private Rigidbody2D rigidbody2d;
-    public float horizontalSpeed = 5;
-    public float verticalSpeed = 5;
+    public float horizontalSpeed = 2;
+    public float verticalSpeed = 2;
     private float pickupCooldown = 0;
     private float pickupCooldownMax = 3;
     private bool stealing = false;

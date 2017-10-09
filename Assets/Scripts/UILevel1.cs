@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class UILevel1 : MonoBehaviour {
 
     public Text score;
+    public Text highscore;
     public Text time;
     public Text justStole;
     public Image justImage;
@@ -24,7 +25,7 @@ public class UILevel1 : MonoBehaviour {
         else
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            
         }
     }
     void Start () {
@@ -33,7 +34,12 @@ public class UILevel1 : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (ScoreManager.Instance.score > PlayerPrefs.GetFloat("highscore", 0))
+        {
+            PlayerPrefs.SetFloat("highscore", ScoreManager.Instance.score);
+        }
         score.text = "Score:" + ScoreManager.Instance.score;
+        highscore.text = "Highscore:" + PlayerPrefs.GetFloat("highscore",0);
 
         if (lastPickedUp)
         {

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ScoreManager : MonoBehaviour {
 
@@ -17,7 +18,6 @@ public class ScoreManager : MonoBehaviour {
         else
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
     }
 
@@ -31,5 +31,9 @@ public class ScoreManager : MonoBehaviour {
         timeLeft -= Time.deltaTime;
         if (UILevel1.Instance)
             UILevel1.Instance.time.text = "Time Left: "+(int)timeLeft;
-	}
+        if (timeLeft <= -1)
+        {
+            SceneManager.LoadScene("Menu");
+        }
+    }
 }

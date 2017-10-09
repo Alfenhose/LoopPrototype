@@ -37,7 +37,7 @@ GameObject:
   - component: {fileID: 4302983076349868}
   - component: {fileID: 114884831272757854}
   m_Layer: 0
-  m_Name: coin
+  m_Name: bars
   m_TagString: Stealable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -82,8 +82,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   height: 0
-  worth: 50
-  objectName: a coin from mario
+  worth: 800
+  objectName: bars of gold.
   sprite: {fileID: 1803708088183238}
   spriterenderer: {fileID: 0}
 --- !u!212 &212005936436639484
@@ -118,12 +118,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4ac6731755ee3694f826162eab5adf20, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 800559e4989f3d8408b84a6e3ab90c02, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.41, y: 1.4}
+  m_Size: {x: 0.85, y: 0.555}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
