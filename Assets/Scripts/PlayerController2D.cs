@@ -2,33 +2,51 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController2D : MonoBehaviour {
+public class PlayerController2D : MonoBehaviour
+{
 
     private Rigidbody2D rBody;
     private bool canJump = true;
-    public float jumpHeight = 10;
+    public float jumpHeight = 20;
     public float moveSpeed = 10;
-    private bool moving = false;
+    public float acceleration = 75;
+    public float jumpSpeedModifier = 0.5f;
+    private PlayerInput pI;
+    
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         rBody = gameObject.GetComponent<Rigidbody2D>();
-        PlayerInput.Instance.Jump.AddListener(Jump);
+        pI = PlayerInput.Instance;
+        pI.Jump.AddListener(Jump);
     }
-	
-	// Update is called once per frame
-	void Update () {
-        if (PlayerInput.Instance.Horizontal > 0)
+
+    // Update is called once per frame
+    void Update()
+    {
+        float jsm;
+        if (canJump)
         {
-            MoveRight();
-        } else if (PlayerInput.Instance.Horizontal < 0)
+            jsm = 1;
+        } else
         {
-            MoveLeft();
-        } else if (canJump)
+            jsm = jumpSpeedModifier;
+        }
+        if (pI.Horizontal > 0)
         {
-            rBody.velocity = new Vector2(0, rBody.velocity.y);
+            rBody.velocity = new Vector2(Mathf.MoveTowards(rBody.velocity.x, moveSpeed, acceleration * Time.deltaTime * jsm), rBody.velocity.y);
+        }
+        else if (pI.Horizontal < 0)
+        {
+            rBody.velocity = new Vector2(Mathf.MoveTowards(rBody.velocity.x, -moveSpeed, acceleration * Time.deltaTime * jsm), rBody.velocity.y);
+        }
+        else
+        {
+            rBody.velocity = new Vector2(Mathf.MoveTowards(rBody.velocity.x, 0, acceleration * Time.deltaTime * jsm), rBody.velocity.y);
         }
     }
+
 
     private void Jump()
     {
@@ -39,46 +57,20 @@ public class PlayerController2D : MonoBehaviour {
         }
     }
 
-    private void MoveRight()
-    {
-        if (canJump)
-        {
-            rBody.velocity = new Vector2(moveSpeed, rBody.velocity.y);
-        }
-        else
-        {
-            if(rBody.velocity.x < moveSpeed)
-            {
-                rBody.velocity += new Vector2(moveSpeed * 1.5f * Time.deltaTime, 0);
-            }
-        }
-        
-        moving = true;
-    }
-
-    private void MoveLeft()
-    {
-        if (canJump)
-        {
-            rBody.velocity = new Vector2(-moveSpeed, rBody.velocity.y);
-        }
-        else
-        {
-            if (rBody.velocity.x > -moveSpeed)
-            {
-                rBody.velocity += new Vector2(-moveSpeed * 1.5f * Time.deltaTime, 0);
-            }
-        }
-        moving = true;
-    }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        canJump = true;
+        if (collision.gameObject.tag == "Ground")
+        {
+            canJump = true;
+        }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        canJump = false;
+        if (collision.gameObject.tag == "Ground")
+        {
+            canJump = false;
+        }
+
     }
 }
