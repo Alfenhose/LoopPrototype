@@ -9,6 +9,7 @@ public class PlayerControllerEscape : MonoBehaviour {
     public float jumpHeight = 20;
     private PlayerInput pI;
     private Events events;
+    private EscapeObjectManager eom;
     private bool fallen = false;
     
 
@@ -20,6 +21,7 @@ public class PlayerControllerEscape : MonoBehaviour {
         pI = PlayerInput.Instance;
         pI.Jump.AddListener(Jump);
         events = Events.Instance;
+        eom = EscapeObjectManager.Instance;
         //pI.Crouch.AddListener(Slide);
     }
 
@@ -30,7 +32,7 @@ public class PlayerControllerEscape : MonoBehaviour {
 
     private void Jump()
     {
-        if (canJump && !fallen)
+        if (canJump && !fallen && !eom.gameEnded)
         {
             rBody.velocity += new Vector2(0, jumpHeight);
             canJump = false;

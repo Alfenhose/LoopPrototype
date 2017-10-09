@@ -9,6 +9,7 @@ public class ObjectMoveScript : MonoBehaviour {
     public float fallingModifier = 5;
     private bool knockedOver = false;
     private Events events;
+    private EscapeObjectManager eom;
     private bool fallen;
     private bool gettingUp;
 
@@ -17,13 +18,20 @@ public class ObjectMoveScript : MonoBehaviour {
     {
         rBody = gameObject.GetComponent<Rigidbody2D>();
         events = Events.Instance;
+        eom = EscapeObjectManager.Instance;
         //events.Fallen.AddListener(Fallen);
         //events.GottenUp.AddListener(GottenUp);
     }
 
     // Update is called once per frame
     void Update () {
-        Move();
+        if (!eom.gameEnded)
+        {
+            Move();
+        } else
+        {
+            rBody.velocity = new Vector2(0, 0);
+        }    
 	}
 
     private void Move()

@@ -9,6 +9,7 @@ public class PoliceChase : MonoBehaviour
     private bool canJump = true;
     public float jumpHeight = 20;
     private Events events;
+    private EscapeObjectManager eom;
     private bool fallen = false;
     public float moveSpeed = 4;
     public float fallingModifier = 5;
@@ -19,12 +20,23 @@ public class PoliceChase : MonoBehaviour
     {
         rBody = gameObject.GetComponent<Rigidbody2D>();
         events = Events.Instance;
+        eom = EscapeObjectManager.Instance;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Move();
+        if (!eom.gameEnded)
+        {
+            if(gameObject.transform.position.x < -9)
+            {
+                eom.EndGame(true);
+            }
+            Move();
+        } else
+        {
+            rBody.velocity = new Vector2(0, 0);
+        }
     }
 
     private void Move()
@@ -69,6 +81,9 @@ public class PoliceChase : MonoBehaviour
             }
             else
                 canJump = true;
+        } else if (collision.gameObject.tag == "Player")
+        {
+            eom.EndGame(false);
         }
     }
 
